@@ -1,0 +1,55 @@
+{
+  "function": "abs",
+  "source_file": "benchmarks/abs.c",
+  "rtl_file": "abs.v",
+  "top_module": {
+    "verilog_name": "abs",
+    "escaped": true
+  },
+  "contract": {
+    "requires": ["x > -2147483648"],
+    "ensures": [
+      "\\result >= 0",
+      "(x >= 0 ==> \\result == x) && (x < 0 ==> \\result == -x)"
+    ],
+    "assigns": ["\\nothing"]
+  },
+  "clock_reset": {
+    "clock": "clock",
+    "reset": "reset",
+    "reset_polarity": "active_low"
+  },
+  "handshake": {
+    "protocol": "start_done",
+    "start": "start_port",
+    "done": "done_port"
+  },
+  "timing": {
+    "latency_type": "fixed",
+    "fixed_cycles": 0,
+    "evidence": "controller_abs has a single FSM state S_0 with no transition; done_port is driven combinationally to 1'b1 in the same cycle start_port==1'b1. datapath_abs contains only combinational function units (__builtin_abs, UIdata_converter_FU, IUdata_converter_FU) chained with assign/wire, no registers. So return_port settles within the same cycle start_port is asserted."
+  },
+  "parameters": [
+    {
+      "c_name": "x",
+      "c_type": "int",
+      "rtl_port": "x",
+      "bit_width": 32,
+      "signed": true,
+      "kind": "scalar"
+    }
+  ],
+  "return": {
+    "c_type": "int",
+    "rtl_port": "return_port",
+    "bit_width": 32,
+    "signed": true
+  },
+  "memory": [],
+  "provenance": {
+    "hls_tool": "Bambu (PandA 2024.10, rev c2ba6936ca2ed63137095fea0b630a1c66e20e63-main)",
+    "command": "bambu --top-fname=abs benchmarks/abs.c",
+    "generated_at": "2026-10-05T15:58:36",
+    "extraction_method": "static parse of abs.v: top module port list for signal mapping, controller_abs FSM for latency/handshake. No Bambu scheduling report was available (Bambu not installed in this environment)."
+  }
+}
