@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "rtl-assertion-generator/metadata-schema.json",
+  "title": "HLS Metadata Record",
+  "description": "Bridges an ACSL-annotated C function to the RTL Bambu generated for it: which RTL signal each C name became, the clock/reset/handshake protocol, and the fixed-vs-variable latency. This is what gets fed to the LLM alongside the C contract so it can write SVA against real signal names instead of guessing.",
+  "type": "object",
+  "required": [
+    "function",
+    "source_file",
+    "rtl_file",
+    "top_module",
+    "contract",
+    "clock_reset",
+    "handshake",
+    "timing",
+    "parameters",
+    "return",
+    "memory",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "function": {
+      "type": "string",
+      "description": "C function name, e.g. 'abs'."
+    },
+    "source_file": {
+      "type": "string",
+      "description": "Path to the ACSL-annotated C source, relative to repo root."
+    },
+    "rtl_file": {
+      "type": "string",
+      "description": "Path to the Bambu-generated Verilog, relative to repo root."
+    },
+    "top_module": {
+      "type": "object",
+      "required": ["verilog_name", "escaped"],
+      "additionalProperties": false,
+      "properties": {
+        "verilog_name": {
+          "type": "string",
+          "description": "The module name exactly as it appears after 'module' in the RTL (without the leading backslash/trailing space of a Verilog escaped identifier, if any)."
+        },
+        "escaped": {
+          "type": "boolean",
+          "description": "True if Bambu emitted this as a Verilog escaped identifier (e.g. '\\abs '). Code that binds assertions to this module must reproduce the escape syntax exactly or the bind will not match."
+        }
+      }
+    },
+    "contract": {
+      "type": "object",
+      "description": "The ACSL contract, split clause-by-clause so each clause can map to one generated assertion instead of the LLM inventing its own split.",
+      "required": ["requires", "ensures", "assigns"],
+      "additionalProperties": false,
+      "properties": {
+        "requires": { "type": "array", "items": { "type": "string" } },
+        "ensures": { "type": "array", "items": { "type": "string" } },
+        "assigns": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "clock_reset": {
+      "type": "object",
+      "required": ["clock", "reset", "reset_polarity"],
+      "additionalProperties": false,
+      "properties": {
+        "clock": { "type": "string", "description": "Name of the clock port." },
+        "reset": { "type": "string", "description": "Name of the reset port." },
+        "reset_polarity": {
+          "enum": ["active_high", "active_low"],
+          "description": "Determined from the controller FSM's reset branch, e.g. 'if (reset == 1'b0) ... <= RESET_STATE' means active_low. Gets the disable iff(...) direction right in generated SVA."
+        }
+      }
+    },
+    "handshake": {
+      "type": "object",
+      "description": "The protocol that marks when inputs are consumed and when the output is valid -- the mechanism that turns an untimed C postcondition into a clocked RTL assertion.",
+      "required": ["protocol", "start", "done"],
+      "additionalProperties": false,
+      "properties": {
+        "protocol": {
+          "enum": ["start_done", "valid_ready", "none"],
+          "description": "'start_done' is Bambu's default block-level handshake (start_port/done_port)."
+        },
+        "start": { "type": "string", "description": "Signal that tells the block to begin, e.g. 'start_port'." },
+        "done": { "type": "string", "description": "Signal that marks outputs valid, e.g. 'done_port'. Postcondition assertions should be gated on this signal." }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "description": "Whether the block takes a fixed, known number of cycles from start to done, or a data-dependent number -- derived by reading the controller FSM, not assumed.",
+      "required": ["latency_type", "fixed_cycles", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "latency_type": { "enum": ["fixed", "variable", "unknown"] },
+        "fixed_cycles": {
+          "type": ["integer", "null"],
+          "description": "Cycle count from start_port asserted to done_port asserted, when latency_type is 'fixed'. Null otherwise."
+        },
+        "evidence": {
+          "type": "string",
+          "description": "Plain-text note on how fixed_cycles/latency_type was determined (e.g. FSM state count, presence of datapath registers), so the number is traceable rather than asserted blindly."
+        }
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "description": "One entry per C function argument: the C name/type next to the RTL port it became.",
+      "items": {
+        "type": "object",
+        "required": ["c_name", "c_type", "rtl_port", "bit_width", "signed", "kind"],
+        "additionalProperties": false,
+        "properties": {
+          "c_name": { "type": "string" },
+          "c_type": { "type": "string" },
+          "rtl_port": { "type": "string", "description": "Actual port name in the RTL top module." },
+          "bit_width": { "type": "integer" },
+          "signed": {
+            "type": "boolean",
+            "description": "Signedness from the C type -- NOT from the Verilog 'signed' keyword, since Bambu's top-level ports are frequently declared as plain (unsigned) vectors even for signed C ints. Assertions must wrap with $signed(...) when this is true."
+          },
+          "kind": {
+            "enum": ["scalar", "pointer", "array"],
+            "description": "'scalar' for the current benchmarks; 'pointer'/'array' reserved for future benchmarks that need the memory[] section populated."
+          }
+        }
+      }
+    },
+    "return": {
+      "type": "object",
+      "required": ["c_type", "rtl_port", "bit_width", "signed"],
+      "additionalProperties": false,
+      "properties": {
+        "c_type": { "type": "string" },
+        "rtl_port": { "type": "string", "description": "RTL port carrying the C return value, e.g. 'return_port'. ACSL's \\result maps here." },
+        "bit_width": { "type": "integer" },
+        "signed": { "type": "boolean" }
+      }
+    },
+    "memory": {
+      "type": "array",
+      "description": "Reserved for array/pointer arguments: address/data/write-enable port mapping. Empty for scalar-only benchmarks.",
+      "items": {
+        "type": "object",
+        "required": ["c_name", "addr_port", "data_port", "we_port"],
+        "additionalProperties": false,
+        "properties": {
+          "c_name": { "type": "string" },
+          "addr_port": { "type": "string" },
+          "data_port": { "type": "string" },
+          "we_port": { "type": "string" }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["hls_tool", "command", "generated_at", "extraction_method"],
+      "additionalProperties": false,
+      "properties": {
+        "hls_tool": { "type": "string" },
+        "command": { "type": "string" },
+        "generated_at": { "type": "string" },
+        "extraction_method": {
+          "type": "string",
+          "description": "How this file was produced: e.g. a static parse of the RTL's top module + controller FSM, vs. a Bambu scheduling report."
+        }
+      }
+    }
+  }
+}
