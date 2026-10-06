@@ -1,0 +1,65 @@
+{
+  "function": "min",
+  "source_file": "benchmarks/min.c",
+  "rtl_file": "min.v",
+  "top_module": {
+    "verilog_name": "min",
+    "escaped": true
+  },
+  "contract": {
+    "requires": [],
+    "ensures": [
+      "\\result <= a && \\result <= b",
+      "\\result == a || \\result == b"
+    ],
+    "assigns": [
+      "\\nothing"
+    ]
+  },
+  "clock_reset": {
+    "clock": "clock",
+    "reset": "reset",
+    "reset_polarity": "active_low"
+  },
+  "handshake": {
+    "protocol": "start_done",
+    "start": "start_port",
+    "done": "done_port"
+  },
+  "timing": {
+    "latency_type": "fixed",
+    "fixed_cycles": 0,
+    "evidence": "controller has a single FSM state (S_0); done_port is driven to 1'b1 combinationally in that same state when start_port==1'b1, with no state transition -- so the result is valid in the same cycle start_port is asserted."
+  },
+  "parameters": [
+    {
+      "c_name": "a",
+      "c_type": "int",
+      "rtl_port": "a",
+      "bit_width": 32,
+      "signed": true,
+      "kind": "scalar"
+    },
+    {
+      "c_name": "b",
+      "c_type": "int",
+      "rtl_port": "b",
+      "bit_width": 32,
+      "signed": true,
+      "kind": "scalar"
+    }
+  ],
+  "return": {
+    "c_type": "int",
+    "rtl_port": "return_port",
+    "bit_width": 32,
+    "signed": true
+  },
+  "memory": [],
+  "provenance": {
+    "hls_tool": "Bambu (PandA 2024.10, rev c2ba6936ca2ed63137095fea0b630a1c66e20e63-main)",
+    "command": "bambu --top-fname=min benchmarks/min.c",
+    "generated_at": "2026-10-05T16:00:08",
+    "extraction_method": "automated static parse (metadata_extractor.py) of the top module port list for signal mapping and the controller FSM for latency/handshake; no Bambu scheduling report was available in this environment."
+  }
+}
