@@ -1,0 +1,414 @@
+
+-- Executing script file `/Users/karamjeetsinghnayyer/Developer/C-based VLSI Project/RTL-Assertion-Generator/formal/min_prove.ys' --
+
+1. Executing Verilog-2005 frontend: min.v
+Parsing formal SystemVerilog input from `min.v' to AST representation.
+Generating RTLIL representation for module `\UIdata_converter_FU'.
+Generating RTLIL representation for module `\IUdata_converter_FU'.
+Generating RTLIL representation for module `\min_expr_FU'.
+Generating RTLIL representation for module `\datapath_min'.
+Generating RTLIL representation for module `\controller_min'.
+Generating RTLIL representation for module `\_min'.
+Generating RTLIL representation for module `\ui_view_convert_expr_FU'.
+Generating RTLIL representation for module `\min'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: sva/min_acsl.sv
+Parsing formal SystemVerilog input from `sva/min_acsl.sv' to AST representation.
+Generating RTLIL representation for module `\min_acsl_sva'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: formal/min_formal.sv
+Parsing formal SystemVerilog input from `formal/min_formal.sv' to AST representation.
+Generating RTLIL representation for module `\min_formal'.
+Successfully finished Verilog frontend.
+
+4. Executing PREP pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \min_formal
+Used module:     \min_acsl_sva
+Used module:     \min
+Used module:         \ui_view_convert_expr_FU
+Used module:         \_min
+Used module:             \datapath_min
+Used module:                 \IUdata_converter_FU
+Used module:                 \UIdata_converter_FU
+Used module:                 \min_expr_FU
+Used module:             \controller_min
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\IUdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.3. Executing AST frontend in derive mode using pre-parsed AST for module `\UIdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Found cached RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_in2 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.4. Executing AST frontend in derive mode using pre-parsed AST for module `\min_expr_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_in2 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\min_expr_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.5. Executing AST frontend in derive mode using pre-parsed AST for module `\ui_view_convert_expr_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU'.
+
+4.1.6. Analyzing design hierarchy..
+Top module:  \min_formal
+Used module:     \min_acsl_sva
+Used module:     \min
+Used module:         $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU
+Used module:         \_min
+Used module:             \datapath_min
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU
+Used module:                 $paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\min_expr_FU
+Used module:             \controller_min
+
+4.1.7. Analyzing design hierarchy..
+Top module:  \min_formal
+Used module:     \min_acsl_sva
+Used module:     \min
+Used module:         $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU
+Used module:         \_min
+Used module:             \datapath_min
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU
+Used module:                 $paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\min_expr_FU
+Used module:             \controller_min
+Removing unused module `\ui_view_convert_expr_FU'.
+Removing unused module `\min_expr_FU'.
+Removing unused module `\IUdata_converter_FU'.
+Removing unused module `\UIdata_converter_FU'.
+Removed 4 unused modules.
+Module min_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+Module min_acsl_sva directly or indirectly contains formal properties -> setting "keep" attribute.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$min.v:182$5 in module controller_min.
+Marked 1 switch rules as full_case in process $proc$min.v:178$3 in module controller_min.
+Removed a total of 0 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 4 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\controller_min.$proc$min.v:175$7'.
+  Set init value: \_present_state = 1'1
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~6 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\min_acsl_sva.$proc$sva/min_acsl.sv:25$17'.
+     1/3: \ensures_1_assert_EN
+     2/3: \ensures_0_assert_EN
+     3/3: \handshake_assert_EN
+Creating decoders for process `\controller_min.$proc$min.v:175$7'.
+Creating decoders for process `\controller_min.$proc$min.v:182$5'.
+     1/4: $2\done_port[0:0]
+     2/4: $2\_next_state[0:0]
+     3/4: $1\_next_state[0:0]
+     4/4: $1\done_port[0:0]
+Creating decoders for process `\controller_min.$proc$min.v:178$3'.
+     1/1: $0\_present_state[0:0]
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\controller_min.\done_port' from process `\controller_min.$proc$min.v:182$5'.
+No latch inferred for signal `\controller_min.\_next_state' from process `\controller_min.$proc$min.v:182$5'.
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\controller_min.\_present_state' using process `\controller_min.$proc$min.v:178$3'.
+  created $dff cell `$procdff$49' with positive edge clock.
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 3 empty switches in `\min_acsl_sva.$proc$sva/min_acsl.sv:25$17'.
+Removing empty process `min_acsl_sva.$proc$sva/min_acsl.sv:25$17'.
+Removing empty process `controller_min.$proc$min.v:175$7'.
+Found and cleaned up 2 empty switches in `\controller_min.$proc$min.v:182$5'.
+Removing empty process `controller_min.$proc$min.v:182$5'.
+Found and cleaned up 1 empty switch in `\controller_min.$proc$min.v:178$3'.
+Removing empty process `controller_min.$proc$min.v:178$3'.
+Cleaned up 6 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module min_formal.
+Optimizing module min_acsl_sva.
+<suppressed ~1 debug messages>
+Optimizing module min.
+Optimizing module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU.
+Optimizing module _min.
+Optimizing module controller_min.
+<suppressed ~3 debug messages>
+Optimizing module datapath_min.
+Optimizing module $paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\min_expr_FU.
+Optimizing module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU.
+Optimizing module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU.
+
+4.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module min_acsl_sva.
+Deleting now unused module min.
+Deleting now unused module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU.
+Deleting now unused module _min.
+Deleting now unused module controller_min.
+Deleting now unused module datapath_min.
+Deleting now unused module $paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\min_expr_FU.
+Deleting now unused module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU.
+Deleting now unused module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU.
+<suppressed ~10 debug messages>
+
+4.4. Executing FUTURE pass.
+
+4.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module min_formal.
+
+4.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \min_formal..
+Removed 1 unused cells and 29 unused wires.
+<suppressed ~2 debug messages>
+
+4.7. Executing CHECK pass (checking for obvious problems).
+Checking module min_formal...
+Found and reported 0 problems.
+
+4.8. Executing OPT pass (performing simple optimizations).
+
+4.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module min_formal.
+
+4.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\min_formal'.
+Computing hashes of 37 cells of `\min_formal'.
+Finding duplicate cells in `\min_formal'.
+Computing hashes of 36 cells of `\min_formal'.
+Finding duplicate cells in `\min_formal'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \min_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $flatten\dut.\_min_i0.\Controller_i.$procmux$33.
+    dead port 2/2 on $mux $flatten\dut.\_min_i0.\Controller_i.$procmux$38.
+Removed 2 multiplexer ports.
+<suppressed ~16 debug messages>
+
+4.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \min_formal.
+  Optimizing cells in module \min_formal.
+Performed a total of 2 changes.
+
+4.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\min_formal'.
+Computing hashes of 32 cells of `\min_formal'.
+Finding duplicate cells in `\min_formal'.
+Computing hashes of 31 cells of `\min_formal'.
+Finding duplicate cells in `\min_formal'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \min_formal..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+4.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module min_formal.
+
+4.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \min_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~9 debug messages>
+
+4.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \min_formal.
+Performed a total of 0 changes.
+
+4.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\min_formal'.
+Computing hashes of 31 cells of `\min_formal'.
+Finding duplicate cells in `\min_formal'.
+Removed a total of 0 cells.
+
+4.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \min_formal..
+
+4.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module min_formal.
+
+4.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+4.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 32 bits (of 64) from port A of cell min_formal.$flatten\acsl_checker.$eq$sva/min_acsl.sv:20$12 ($eq).
+Removed top 32 bits (of 64) from port B of cell min_formal.$flatten\acsl_checker.$eq$sva/min_acsl.sv:20$12 ($eq).
+Removed top 32 bits (of 64) from port A of cell min_formal.$flatten\acsl_checker.$eq$sva/min_acsl.sv:20$11 ($eq).
+Removed top 32 bits (of 64) from port B of cell min_formal.$flatten\acsl_checker.$eq$sva/min_acsl.sv:20$11 ($eq).
+Removed top 32 bits (of 64) from port A of cell min_formal.$flatten\acsl_checker.$le$sva/min_acsl.sv:18$9 ($le).
+Removed top 32 bits (of 64) from port B of cell min_formal.$flatten\acsl_checker.$le$sva/min_acsl.sv:18$9 ($le).
+Removed top 32 bits (of 64) from port A of cell min_formal.$flatten\acsl_checker.$le$sva/min_acsl.sv:18$8 ($le).
+Removed top 32 bits (of 64) from port B of cell min_formal.$flatten\acsl_checker.$le$sva/min_acsl.sv:18$8 ($le).
+
+4.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \min_formal..
+
+4.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.12. Executing OPT pass (performing simple optimizations).
+
+4.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module min_formal.
+
+4.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\min_formal'.
+Computing hashes of 31 cells of `\min_formal'.
+Finding duplicate cells in `\min_formal'.
+Removed a total of 0 cells.
+
+4.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \min_formal..
+
+4.12.4. Finished fast OPT passes.
+
+4.13. Executing SORT pass.
+
+4.14. Printing statistics.
+
+=== min_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       75 wires
+     1225 wire bits
+       66 public wires
+     1216 public wire bits
+        5 ports
+       67 port bits
+       31 cells
+        4   $check
+        1   $dff
+        3   $eq
+        2   $le
+        4   $logic_and
+        1   $logic_or
+        1   $lt
+        5   $mux
+       10   $scopeinfo
+
+4.15. Executing CHECK pass (checking for obvious problems).
+Checking module min_formal...
+Found and reported 0 problems.
+
+5. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \a
+Import def constraint for this timestep: \b
+Imported 37 cells to SAT database.
+Import set-constraint from init attribute: \dut._min_i0.Controller_i._present_state = 1'1
+Final init constraint equation: \dut._min_i0.Controller_i._present_state = 1'1
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \a
+Import def constraint for this timestep: \b
+Imported 37 cells to SAT database.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \a
+Import def constraint for this timestep: \b
+Imported 37 cells to SAT database.
+Import proof for assert: $flatten\acsl_checker.$eq$sva/min_acsl.sv:26$18_Y when \acsl_checker.handshake_assert_EN.
+Import proof for assert: \acsl_checker.ensures_1 when \acsl_checker.ensures_0_assert_EN.
+Import proof for assert: \acsl_checker.ensures_0 when \acsl_checker.ensures_0_assert_EN.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \a
+Import def constraint for this timestep: \b
+Imported 37 cells to SAT database.
+Import proof for assert: $flatten\acsl_checker.$eq$sva/min_acsl.sv:26$18_Y when \acsl_checker.handshake_assert_EN.
+Import proof for assert: \acsl_checker.ensures_1 when \acsl_checker.ensures_0_assert_EN.
+Import proof for assert: \acsl_checker.ensures_0 when \acsl_checker.ensures_0_assert_EN.
+
+[base case 1] Solving problem with 8105 variables and 22813 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \a
+Import def constraint for this timestep: \b
+Imported 37 cells to SAT database.
+Import proof for assert: $flatten\acsl_checker.$eq$sva/min_acsl.sv:26$18_Y when \acsl_checker.handshake_assert_EN.
+Import proof for assert: \acsl_checker.ensures_1 when \acsl_checker.ensures_0_assert_EN.
+Import proof for assert: \acsl_checker.ensures_0 when \acsl_checker.ensures_0_assert_EN.
+
+[induction step 1] Solving problem with 5406 variables and 15217 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

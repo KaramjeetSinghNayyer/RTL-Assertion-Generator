@@ -1,0 +1,5 @@
+read_verilog -formal -sv -D YOSYS max.v sva/max_acsl.sv formal/max_formal.sv;
+prep -top max_formal -flatten;
+chformal -lower;
+chformal -cover -remove;
+sat -seq 2 -tempinduct -maxsteps 8 -set-assumes -set-def-inputs -prove-asserts -verify;

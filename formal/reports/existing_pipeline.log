@@ -1,0 +1,25 @@
+--- Successfully Loaded: max.c ---
+/*@
+  assigns \nothing;
+  ensures \result >= a && ...
+
+--- Successfully Loaded: sign.c ---
+/*@
+  assigns \nothing;
+  ensures (x > 0 ==> \resu...
+
+--- Successfully Loaded: min.c ---
+/*@
+  assigns \nothing;
+  ensures \result <= a && ...
+
+--- Successfully Loaded: add.c ---
+/*@
+  requires x >= 0 && y >= 0;
+  requires x + y ...
+
+--- Successfully Loaded: abs.c ---
+/*@
+  requires x > -2147483648;
+  assigns \nothing...
+

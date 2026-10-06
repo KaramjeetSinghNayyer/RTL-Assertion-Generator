@@ -1,0 +1,5 @@
+PASS: min, 113 C/RTL vectors, concurrent SVA enabled
+- /var/folders/91/nm08j7f97kq7gjc20ywfx__w0000gn/T/rtl-acsl-a_b62lhg/min_tb.sv:1029: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05
+- Verilator: $finish at 2us; walltime 0.001 s; speed 3.854 ms/s
+- Verilator: cpu 0.001 s on 1 threads; allocated 2 MB

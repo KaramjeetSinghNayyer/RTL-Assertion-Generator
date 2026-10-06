@@ -1,0 +1,93 @@
+[
+  {
+    "function": "abs",
+    "status": "ready",
+    "requires": [
+      "x > -2147483648"
+    ],
+    "ensures": [
+      "\\result >= 0",
+      "(x >= 0 ==> \\result == x) && (x < 0 ==> \\result == -x)"
+    ],
+    "assigns": [
+      "\\nothing"
+    ],
+    "assertion_count": 3,
+    "inputs_sha256": {
+      "benchmarks/abs.c": "fda775a75d25592276f14c4e65d86fcafe35bf35415719a09e0299c7d5f2c49a",
+      "abs.v": "ae347dc06f26b4bfd11ca789ed6a60f68fc3de049655d45b4c59afb5979a4831",
+      "metadata/abs.meta.json": "99086060fc76464216caadbd80ab5a9bd5de8bf7523d48a3b501c0b45c02af66"
+    }
+  },
+  {
+    "function": "add",
+    "status": "ready",
+    "requires": [
+      "x >= 0 && y >= 0",
+      "x + y <= 2147483647"
+    ],
+    "ensures": [
+      "\\result == x + y"
+    ],
+    "assigns": [
+      "\\nothing"
+    ],
+    "assertion_count": 2,
+    "inputs_sha256": {
+      "benchmarks/add.c": "40b0fb8dbe891aabdf29972693731407a886e91bffc3321104548b22e1f769a6",
+      "add.v": "670658e4bb16c00915399044e6ba25fa83fbe6b8fc7313dafc2202e57c45a0f5",
+      "metadata/add.meta.json": "918efaec6b5e8967d8460a26f01d6a172bf88c0fbe29ff0a729d2b4eb6c1a536"
+    }
+  },
+  {
+    "function": "max",
+    "status": "ready",
+    "requires": [],
+    "ensures": [
+      "\\result >= a && \\result >= b",
+      "\\result == a || \\result == b"
+    ],
+    "assigns": [
+      "\\nothing"
+    ],
+    "assertion_count": 3,
+    "inputs_sha256": {
+      "benchmarks/max.c": "f8a2133c5e72f60806f8460f917992e3268f109ef34a7c0ecf97644c3f491d66",
+      "max.v": "22f5469a5a439abfb574291005b422585c4802677973f4cdc8f8adeb7f29c490",
+      "metadata/max.meta.json": "48501c5c4fe430b569791eedb66abb1f9a8efe0f37f206f4e63d1bdd71909e30"
+    }
+  },
+  {
+    "function": "min",
+    "status": "ready",
+    "requires": [],
+    "ensures": [
+      "\\result <= a && \\result <= b",
+      "\\result == a || \\result == b"
+    ],
+    "assigns": [
+      "\\nothing"
+    ],
+    "assertion_count": 3,
+    "inputs_sha256": {
+      "benchmarks/min.c": "5a94629c12debbe7f5743da4fe3db2191802d8cb34166024c32037dca290fdcf",
+      "min.v": "d3d79bd2c3f83ce0af1ea74ae7cd410c047790fd006d1a59824b9c913bdaef11",
+      "metadata/min.meta.json": "ef28ca9ea0cba3a8b9c7d2c5e72385546eb87cff4491835968f79e85177da04a"
+    }
+  },
+  {
+    "function": "sign",
+    "status": "pending_rtl_and_metadata",
+    "requires": [],
+    "ensures": [
+      "(x > 0 ==> \\result == 1) && (x < 0 ==> \\result == -1) && (x == 0 ==> \\result == 0)"
+    ],
+    "assigns": [
+      "\\nothing"
+    ],
+    "assertion_count": 1,
+    "inputs_sha256": {
+      "benchmarks/sign.c": "75cb0473e06265f934843f760ceef615dc35ebee69dba09fae1d3acd0e03596f"
+    }
+  }
+]

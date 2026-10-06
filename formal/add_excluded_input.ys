@@ -1,0 +1,5 @@
+read_verilog -formal -sv -D YOSYS add.v sva/add_acsl.sv formal/add_formal.sv;
+prep -top add_formal -flatten;
+chformal -lower;
+chformal -cover -remove;
+sat -seq 2 -set-assumes -set-def-inputs -set-at 2 reset 1 -set-at 2 start_port 1 -set-at 2 x 2147483647 -set-at 2 y 1;

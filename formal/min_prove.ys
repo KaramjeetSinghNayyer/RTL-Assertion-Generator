@@ -1,0 +1,5 @@
+read_verilog -formal -sv -D YOSYS min.v sva/min_acsl.sv formal/min_formal.sv;
+prep -top min_formal -flatten;
+chformal -lower;
+chformal -cover -remove;
+sat -seq 2 -tempinduct -maxsteps 8 -set-assumes -set-def-inputs -prove-asserts -verify;

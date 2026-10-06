@@ -1,0 +1,368 @@
+
+-- Executing script file `/Users/karamjeetsinghnayyer/Developer/C-based VLSI Project/RTL-Assertion-Generator/formal/abs_excluded_input.ys' --
+
+1. Executing Verilog-2005 frontend: abs.v
+Parsing formal SystemVerilog input from `abs.v' to AST representation.
+Generating RTLIL representation for module `\UIdata_converter_FU'.
+Generating RTLIL representation for module `\IUdata_converter_FU'.
+Generating RTLIL representation for module `\__builtin_abs'.
+Generating RTLIL representation for module `\datapath_abs'.
+Generating RTLIL representation for module `\controller_abs'.
+Generating RTLIL representation for module `\_abs'.
+Generating RTLIL representation for module `\ui_view_convert_expr_FU'.
+Generating RTLIL representation for module `\abs'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: sva/abs_acsl.sv
+Parsing formal SystemVerilog input from `sva/abs_acsl.sv' to AST representation.
+Generating RTLIL representation for module `\abs_acsl_sva'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: formal/abs_formal.sv
+Parsing formal SystemVerilog input from `formal/abs_formal.sv' to AST representation.
+Generating RTLIL representation for module `\abs_formal'.
+Successfully finished Verilog frontend.
+
+4. Executing PREP pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \abs_formal
+Used module:     \abs_acsl_sva
+Used module:     \abs
+Used module:         \ui_view_convert_expr_FU
+Used module:         \_abs
+Used module:             \datapath_abs
+Used module:                 \IUdata_converter_FU
+Used module:                 \UIdata_converter_FU
+Used module:                 \__builtin_abs
+Used module:             \controller_abs
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\IUdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.3. Executing AST frontend in derive mode using pre-parsed AST for module `\UIdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.4. Executing AST frontend in derive mode using pre-parsed AST for module `\__builtin_abs'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\__builtin_abs'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.5. Executing AST frontend in derive mode using pre-parsed AST for module `\ui_view_convert_expr_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU'.
+
+4.1.6. Analyzing design hierarchy..
+Top module:  \abs_formal
+Used module:     \abs_acsl_sva
+Used module:     \abs
+Used module:         $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU
+Used module:         \_abs
+Used module:             \datapath_abs
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\__builtin_abs
+Used module:             \controller_abs
+
+4.1.7. Analyzing design hierarchy..
+Top module:  \abs_formal
+Used module:     \abs_acsl_sva
+Used module:     \abs
+Used module:         $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU
+Used module:         \_abs
+Used module:             \datapath_abs
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU
+Used module:                 $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\__builtin_abs
+Used module:             \controller_abs
+Removing unused module `\ui_view_convert_expr_FU'.
+Removing unused module `\__builtin_abs'.
+Removing unused module `\IUdata_converter_FU'.
+Removing unused module `\UIdata_converter_FU'.
+Removed 4 unused modules.
+Module abs_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+Module abs_acsl_sva directly or indirectly contains formal properties -> setting "keep" attribute.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$abs.v:171$5 in module controller_abs.
+Marked 1 switch rules as full_case in process $proc$abs.v:167$3 in module controller_abs.
+Removed a total of 0 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 4 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\controller_abs.$proc$abs.v:164$7'.
+  Set init value: \_present_state = 1'1
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~7 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\abs_acsl_sva.$proc$sva/abs_acsl.sv:25$23'.
+     1/4: \ensures_1_assert_EN
+     2/4: \ensures_0_assert_EN
+     3/4: \handshake_assert_EN
+     4/4: \requires_0_assume_EN
+Creating decoders for process `\controller_abs.$proc$abs.v:164$7'.
+Creating decoders for process `\controller_abs.$proc$abs.v:171$5'.
+     1/4: $2\done_port[0:0]
+     2/4: $2\_next_state[0:0]
+     3/4: $1\_next_state[0:0]
+     4/4: $1\done_port[0:0]
+Creating decoders for process `\controller_abs.$proc$abs.v:167$3'.
+     1/1: $0\_present_state[0:0]
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\controller_abs.\done_port' from process `\controller_abs.$proc$abs.v:171$5'.
+No latch inferred for signal `\controller_abs.\_next_state' from process `\controller_abs.$proc$abs.v:171$5'.
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\controller_abs.\_present_state' using process `\controller_abs.$proc$abs.v:167$3'.
+  created $dff cell `$procdff$58' with positive edge clock.
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `\abs_acsl_sva.$proc$sva/abs_acsl.sv:25$23'.
+Removing empty process `abs_acsl_sva.$proc$sva/abs_acsl.sv:25$23'.
+Removing empty process `controller_abs.$proc$abs.v:164$7'.
+Found and cleaned up 2 empty switches in `\controller_abs.$proc$abs.v:171$5'.
+Removing empty process `controller_abs.$proc$abs.v:171$5'.
+Found and cleaned up 1 empty switch in `\controller_abs.$proc$abs.v:167$3'.
+Removing empty process `controller_abs.$proc$abs.v:167$3'.
+Cleaned up 7 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module abs_formal.
+Optimizing module abs_acsl_sva.
+Optimizing module abs.
+Optimizing module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU.
+Optimizing module _abs.
+Optimizing module controller_abs.
+<suppressed ~3 debug messages>
+Optimizing module datapath_abs.
+Optimizing module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\__builtin_abs.
+Optimizing module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU.
+Optimizing module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU.
+
+4.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module abs_acsl_sva.
+Deleting now unused module abs.
+Deleting now unused module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU.
+Deleting now unused module _abs.
+Deleting now unused module controller_abs.
+Deleting now unused module datapath_abs.
+Deleting now unused module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\__builtin_abs.
+Deleting now unused module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\UIdata_converter_FU.
+Deleting now unused module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\IUdata_converter_FU.
+<suppressed ~9 debug messages>
+
+4.4. Executing FUTURE pass.
+
+4.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module abs_formal.
+
+4.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \abs_formal..
+Removed 1 unused cells and 31 unused wires.
+<suppressed ~2 debug messages>
+
+4.7. Executing CHECK pass (checking for obvious problems).
+Checking module abs_formal...
+Found and reported 0 problems.
+
+4.8. Executing OPT pass (performing simple optimizations).
+
+4.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module abs_formal.
+
+4.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\abs_formal'.
+Computing hashes of 46 cells of `\abs_formal'.
+Finding duplicate cells in `\abs_formal'.
+Computing hashes of 44 cells of `\abs_formal'.
+Finding duplicate cells in `\abs_formal'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+4.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \abs_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $flatten\dut.\_abs_i0.\Datapath_i.\fu_abs_428532_428549.$ternary$abs.v:111$29: \x -> { 1'0 \x [30:0] }
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $flatten\dut.\_abs_i0.\Controller_i.$procmux$42.
+    dead port 2/2 on $mux $flatten\dut.\_abs_i0.\Controller_i.$procmux$47.
+Removed 2 multiplexer ports.
+<suppressed ~18 debug messages>
+
+4.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \abs_formal.
+  Optimizing cells in module \abs_formal.
+Performed a total of 2 changes.
+
+4.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\abs_formal'.
+Computing hashes of 40 cells of `\abs_formal'.
+Finding duplicate cells in `\abs_formal'.
+Computing hashes of 39 cells of `\abs_formal'.
+Finding duplicate cells in `\abs_formal'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \abs_formal..
+Removed 0 unused cells and 5 unused wires.
+<suppressed ~1 debug messages>
+
+4.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module abs_formal.
+
+4.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \abs_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~11 debug messages>
+
+4.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \abs_formal.
+Performed a total of 0 changes.
+
+4.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\abs_formal'.
+Computing hashes of 39 cells of `\abs_formal'.
+Finding duplicate cells in `\abs_formal'.
+Removed a total of 0 cells.
+
+4.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \abs_formal..
+
+4.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module abs_formal.
+
+4.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+4.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 32 bits (of 64) from port A of cell abs_formal.$flatten\acsl_checker.$eq$sva/abs_acsl.sv:20$17 ($eq).
+Removed top 32 bits (of 64) from port A of cell abs_formal.$flatten\acsl_checker.$neg$sva/abs_acsl.sv:20$16 ($neg).
+Removed top 32 bits (of 64) from port A of cell abs_formal.$flatten\acsl_checker.$lt$sva/abs_acsl.sv:20$14 ($lt).
+Removed top 63 bits (of 64) from port B of cell abs_formal.$flatten\acsl_checker.$lt$sva/abs_acsl.sv:20$14 ($lt).
+Removed top 32 bits (of 64) from port A of cell abs_formal.$flatten\acsl_checker.$eq$sva/abs_acsl.sv:20$12 ($eq).
+Removed top 32 bits (of 64) from port B of cell abs_formal.$flatten\acsl_checker.$eq$sva/abs_acsl.sv:20$12 ($eq).
+Removed top 32 bits (of 64) from port A of cell abs_formal.$flatten\acsl_checker.$ge$sva/abs_acsl.sv:20$10 ($ge).
+Removed top 63 bits (of 64) from port B of cell abs_formal.$flatten\acsl_checker.$ge$sva/abs_acsl.sv:20$10 ($ge).
+Removed top 32 bits (of 64) from port A of cell abs_formal.$flatten\acsl_checker.$ge$sva/abs_acsl.sv:18$9 ($ge).
+Removed top 63 bits (of 64) from port B of cell abs_formal.$flatten\acsl_checker.$ge$sva/abs_acsl.sv:18$9 ($ge).
+Removed top 32 bits (of 64) from port A of cell abs_formal.$flatten\acsl_checker.$gt$sva/abs_acsl.sv:16$8 ($gt).
+Removed top 32 bits (of 64) from port B of cell abs_formal.$flatten\acsl_checker.$gt$sva/abs_acsl.sv:16$8 ($gt).
+
+4.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \abs_formal..
+
+4.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.12. Executing OPT pass (performing simple optimizations).
+
+4.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module abs_formal.
+
+4.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\abs_formal'.
+Computing hashes of 39 cells of `\abs_formal'.
+Finding duplicate cells in `\abs_formal'.
+Removed a total of 0 cells.
+
+4.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \abs_formal..
+
+4.12.4. Finished fast OPT passes.
+
+4.13. Executing SORT pass.
+
+4.14. Printing statistics.
+
+=== abs_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       73 wires
+      975 wire bits
+       58 public wires
+      866 public wire bits
+        4 ports
+       35 port bits
+       39 cells
+        5   $check
+        1   $dff
+        3   $eq
+        2   $ge
+        1   $gt
+        5   $logic_and
+        2   $logic_not
+        2   $logic_or
+        1   $lt
+        6   $mux
+        2   $neg
+        9   $scopeinfo
+
+4.15. Executing CHECK pass (checking for obvious problems).
+Checking module abs_formal...
+Found and reported 0 problems.
+
+5. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \x
+Imported 47 cells to SAT database.
+Import constraint from assume cell: \acsl_checker.contract_domain when \acsl_checker.requires_0_assume_EN.
+Import set-constraint from init attribute: \dut._abs_i0.Controller_i._present_state = 1'1
+Final init constraint equation: \dut._abs_i0.Controller_i._present_state = 1'1
+
+Setting up time step 2:
+Import set-constraint for this timestep: \reset = 1'1
+Import set-constraint for this timestep: \start_port = 1'1
+Import set-constraint for this timestep: \x = 32'10000000000000000000000000000000
+Final constraint equation: { \x \start_port \reset } = 34'1000000000000000000000000000000011
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \x
+Imported 47 cells to SAT database.
+Import constraint from assume cell: \acsl_checker.contract_domain when \acsl_checker.requires_0_assume_EN.
+
+Solving problem with 8559 variables and 24038 clauses..
+SAT solving finished - no model found.

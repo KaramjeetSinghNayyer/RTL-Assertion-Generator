@@ -1,0 +1,394 @@
+
+-- Executing script file `/Users/karamjeetsinghnayyer/Developer/C-based VLSI Project/RTL-Assertion-Generator/formal/add_prove.ys' --
+
+1. Executing Verilog-2005 frontend: add.v
+Parsing formal SystemVerilog input from `add.v' to AST representation.
+Generating RTLIL representation for module `\ui_plus_expr_FU'.
+Generating RTLIL representation for module `\datapath_add'.
+Generating RTLIL representation for module `\controller_add'.
+Generating RTLIL representation for module `\_add'.
+Generating RTLIL representation for module `\ui_view_convert_expr_FU'.
+Generating RTLIL representation for module `\add'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: sva/add_acsl.sv
+Parsing formal SystemVerilog input from `sva/add_acsl.sv' to AST representation.
+Generating RTLIL representation for module `\add_acsl_sva'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: formal/add_formal.sv
+Parsing formal SystemVerilog input from `formal/add_formal.sv' to AST representation.
+Generating RTLIL representation for module `\add_formal'.
+Successfully finished Verilog frontend.
+
+4. Executing PREP pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \add_formal
+Used module:     \add_acsl_sva
+Used module:     \add
+Used module:         \ui_view_convert_expr_FU
+Used module:         \_add
+Used module:             \datapath_add
+Used module:                 \ui_plus_expr_FU
+Used module:             \controller_add
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_in2 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\ui_plus_expr_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_in2 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\ui_plus_expr_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+
+4.1.3. Executing AST frontend in derive mode using pre-parsed AST for module `\ui_view_convert_expr_FU'.
+Parameter \BITSIZE_in1 = 32
+Parameter \BITSIZE_out1 = 32
+Generating RTLIL representation for module `$paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU'.
+
+4.1.4. Analyzing design hierarchy..
+Top module:  \add_formal
+Used module:     \add_acsl_sva
+Used module:     \add
+Used module:         $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU
+Used module:         \_add
+Used module:             \datapath_add
+Used module:                 $paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\ui_plus_expr_FU
+Used module:             \controller_add
+
+4.1.5. Analyzing design hierarchy..
+Top module:  \add_formal
+Used module:     \add_acsl_sva
+Used module:     \add
+Used module:         $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU
+Used module:         \_add
+Used module:             \datapath_add
+Used module:                 $paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\ui_plus_expr_FU
+Used module:             \controller_add
+Removing unused module `\ui_view_convert_expr_FU'.
+Removing unused module `\ui_plus_expr_FU'.
+Removed 2 unused modules.
+Module add_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+Module add_acsl_sva directly or indirectly contains formal properties -> setting "keep" attribute.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$add.v:120$4 in module controller_add.
+Marked 1 switch rules as full_case in process $proc$add.v:116$2 in module controller_add.
+Removed a total of 0 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 4 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\controller_add.$proc$add.v:113$6'.
+  Set init value: \_present_state = 1'1
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~7 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\add_acsl_sva.$proc$sva/add_acsl.sv:27$18'.
+     1/4: \ensures_0_assert_EN
+     2/4: \handshake_assert_EN
+     3/4: \requires_1_assume_EN
+     4/4: \requires_0_assume_EN
+Creating decoders for process `\controller_add.$proc$add.v:113$6'.
+Creating decoders for process `\controller_add.$proc$add.v:120$4'.
+     1/4: $2\done_port[0:0]
+     2/4: $2\_next_state[0:0]
+     3/4: $1\_next_state[0:0]
+     4/4: $1\done_port[0:0]
+Creating decoders for process `\controller_add.$proc$add.v:116$2'.
+     1/1: $0\_present_state[0:0]
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\controller_add.\done_port' from process `\controller_add.$proc$add.v:120$4'.
+No latch inferred for signal `\controller_add.\_next_state' from process `\controller_add.$proc$add.v:120$4'.
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\controller_add.\_present_state' using process `\controller_add.$proc$add.v:116$2'.
+  created $dff cell `$procdff$52' with positive edge clock.
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `\add_acsl_sva.$proc$sva/add_acsl.sv:27$18'.
+Removing empty process `add_acsl_sva.$proc$sva/add_acsl.sv:27$18'.
+Removing empty process `controller_add.$proc$add.v:113$6'.
+Found and cleaned up 2 empty switches in `\controller_add.$proc$add.v:120$4'.
+Removing empty process `controller_add.$proc$add.v:120$4'.
+Found and cleaned up 1 empty switch in `\controller_add.$proc$add.v:116$2'.
+Removing empty process `controller_add.$proc$add.v:116$2'.
+Cleaned up 7 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module add_formal.
+Optimizing module add_acsl_sva.
+Optimizing module add.
+Optimizing module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU.
+Optimizing module _add.
+Optimizing module controller_add.
+<suppressed ~3 debug messages>
+Optimizing module datapath_add.
+Optimizing module $paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\ui_plus_expr_FU.
+
+4.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module add_acsl_sva.
+Deleting now unused module add.
+Deleting now unused module $paramod$2ffd7c677e7710ef2c2b2ae10f27557639ad878e\ui_view_convert_expr_FU.
+Deleting now unused module _add.
+Deleting now unused module controller_add.
+Deleting now unused module datapath_add.
+Deleting now unused module $paramod$5e567bc1f24086dd8eefb1ece4d88a0c5bb6306e\ui_plus_expr_FU.
+<suppressed ~7 debug messages>
+
+4.4. Executing FUTURE pass.
+
+4.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module add_formal.
+
+4.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \add_formal..
+Removed 1 unused cells and 32 unused wires.
+<suppressed ~2 debug messages>
+
+4.7. Executing CHECK pass (checking for obvious problems).
+Checking module add_formal...
+Found and reported 0 problems.
+
+4.8. Executing OPT pass (performing simple optimizations).
+
+4.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module add_formal.
+
+4.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\add_formal'.
+Computing hashes of 39 cells of `\add_formal'.
+Finding duplicate cells in `\add_formal'.
+Computing hashes of 36 cells of `\add_formal'.
+Finding duplicate cells in `\add_formal'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+4.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \add_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $flatten\dut.\_add_i0.\Controller_i.$procmux$36.
+    dead port 2/2 on $mux $flatten\dut.\_add_i0.\Controller_i.$procmux$41.
+Removed 2 multiplexer ports.
+<suppressed ~16 debug messages>
+
+4.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \add_formal.
+  Optimizing cells in module \add_formal.
+Performed a total of 2 changes.
+
+4.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\add_formal'.
+Computing hashes of 32 cells of `\add_formal'.
+Finding duplicate cells in `\add_formal'.
+Computing hashes of 31 cells of `\add_formal'.
+Finding duplicate cells in `\add_formal'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \add_formal..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~1 debug messages>
+
+4.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module add_formal.
+
+4.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \add_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~9 debug messages>
+
+4.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \add_formal.
+Performed a total of 0 changes.
+
+4.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\add_formal'.
+Computing hashes of 31 cells of `\add_formal'.
+Finding duplicate cells in `\add_formal'.
+Removed a total of 0 cells.
+
+4.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \add_formal..
+
+4.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module add_formal.
+
+4.8.14. Finished fast OPT passes. (There is nothing left to do.)
+
+4.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 32 bits (of 64) from port A of cell add_formal.$flatten\acsl_checker.$eq$sva/add_acsl.sv:22$13 ($eq).
+Removed top 32 bits (of 64) from port B of cell add_formal.$flatten\acsl_checker.$le$sva/add_acsl.sv:20$11 ($le).
+Converting cell add_formal.$flatten\acsl_checker.$add$sva/add_acsl.sv:20$10 ($add) from unsigned to signed.
+Removed top 32 bits (of 64) from port A of cell add_formal.$flatten\acsl_checker.$add$sva/add_acsl.sv:20$10 ($add).
+Removed top 32 bits (of 64) from port B of cell add_formal.$flatten\acsl_checker.$add$sva/add_acsl.sv:20$10 ($add).
+Removed top 31 bits (of 64) from port Y of cell add_formal.$flatten\acsl_checker.$add$sva/add_acsl.sv:20$10 ($add).
+Removed top 32 bits (of 64) from port A of cell add_formal.$flatten\acsl_checker.$ge$sva/add_acsl.sv:18$8 ($ge).
+Removed top 63 bits (of 64) from port B of cell add_formal.$flatten\acsl_checker.$ge$sva/add_acsl.sv:18$8 ($ge).
+Removed top 32 bits (of 64) from port A of cell add_formal.$flatten\acsl_checker.$ge$sva/add_acsl.sv:18$7 ($ge).
+Removed top 63 bits (of 64) from port B of cell add_formal.$flatten\acsl_checker.$ge$sva/add_acsl.sv:18$7 ($ge).
+Removed top 31 bits (of 64) from port B of cell add_formal.$flatten\acsl_checker.$eq$sva/add_acsl.sv:22$13 ($eq).
+Removed top 31 bits (of 64) from port A of cell add_formal.$flatten\acsl_checker.$le$sva/add_acsl.sv:20$11 ($le).
+
+4.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \add_formal..
+
+4.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.12. Executing OPT pass (performing simple optimizations).
+
+4.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module add_formal.
+
+4.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\add_formal'.
+Computing hashes of 31 cells of `\add_formal'.
+Finding duplicate cells in `\add_formal'.
+Removed a total of 0 cells.
+
+4.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \add_formal..
+
+4.12.4. Finished fast OPT passes.
+
+4.13. Executing SORT pass.
+
+4.14. Printing statistics.
+
+=== add_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       67 wires
+     1001 wire bits
+       59 public wires
+      930 public wire bits
+        5 ports
+       67 port bits
+       31 cells
+        2   $add
+        5   $check
+        1   $dff
+        2   $eq
+        2   $ge
+        1   $le
+        6   $logic_and
+        5   $mux
+        7   $scopeinfo
+
+4.15. Executing CHECK pass (checking for obvious problems).
+Checking module add_formal...
+Found and reported 0 problems.
+
+5. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \y
+Import def constraint for this timestep: \x
+Imported 39 cells to SAT database.
+Import constraint from assume cell: \acsl_checker.requires_1 when \acsl_checker.requires_0_assume_EN.
+Import constraint from assume cell: \acsl_checker.requires_0 when \acsl_checker.requires_0_assume_EN.
+Import set-constraint from init attribute: \dut._add_i0.Controller_i._present_state = 1'1
+Final init constraint equation: \dut._add_i0.Controller_i._present_state = 1'1
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \y
+Import def constraint for this timestep: \x
+Imported 39 cells to SAT database.
+Import constraint from assume cell: \acsl_checker.requires_1 when \acsl_checker.requires_0_assume_EN.
+Import constraint from assume cell: \acsl_checker.requires_0 when \acsl_checker.requires_0_assume_EN.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \y
+Import def constraint for this timestep: \x
+Imported 39 cells to SAT database.
+Import constraint from assume cell: \acsl_checker.requires_1 when \acsl_checker.requires_0_assume_EN.
+Import constraint from assume cell: \acsl_checker.requires_0 when \acsl_checker.requires_0_assume_EN.
+Import proof for assert: $flatten\acsl_checker.$eq$sva/add_acsl.sv:30$21_Y when \acsl_checker.handshake_assert_EN.
+Import proof for assert: \acsl_checker.ensures_0 when \acsl_checker.ensures_0_assert_EN.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \y
+Import def constraint for this timestep: \x
+Imported 39 cells to SAT database.
+Import constraint from assume cell: \acsl_checker.requires_1 when \acsl_checker.requires_0_assume_EN.
+Import constraint from assume cell: \acsl_checker.requires_0 when \acsl_checker.requires_0_assume_EN.
+Import proof for assert: $flatten\acsl_checker.$eq$sva/add_acsl.sv:30$21_Y when \acsl_checker.handshake_assert_EN.
+Import proof for assert: \acsl_checker.ensures_0 when \acsl_checker.ensures_0_assert_EN.
+
+[base case 1] Solving problem with 7130 variables and 19165 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \reset
+Import def constraint for this timestep: \clock
+Import def constraint for this timestep: \start_port
+Import def constraint for this timestep: \y
+Import def constraint for this timestep: \x
+Imported 39 cells to SAT database.
+Import constraint from assume cell: \acsl_checker.requires_1 when \acsl_checker.requires_0_assume_EN.
+Import constraint from assume cell: \acsl_checker.requires_0 when \acsl_checker.requires_0_assume_EN.
+Import proof for assert: $flatten\acsl_checker.$eq$sva/add_acsl.sv:30$21_Y when \acsl_checker.handshake_assert_EN.
+Import proof for assert: \acsl_checker.ensures_0 when \acsl_checker.ensures_0_assert_EN.
+
+[induction step 1] Solving problem with 4754 variables and 12778 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

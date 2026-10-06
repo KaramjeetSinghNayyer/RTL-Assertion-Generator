@@ -1,0 +1,5 @@
+[ok] abs: valid (not written, --check)
+[ok] add: valid (not written, --check)
+[ok] max: valid (not written, --check)
+[ok] min: valid (not written, --check)
+[skip] sign: sign.v not found (not synthesized yet)

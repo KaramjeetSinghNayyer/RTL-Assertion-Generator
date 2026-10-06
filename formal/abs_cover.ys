@@ -1,0 +1,5 @@
+read_verilog -formal -sv -D YOSYS abs.v sva/abs_acsl.sv formal/abs_formal.sv;
+prep -top abs_formal -flatten;
+chformal -lower;
+chformal -cover -remove;
+sat -seq 2 -set-assumes -set-def-inputs -set-at 2 reset 1 -set-at 2 start_port 1 -prove acsl_checker.transaction_witness 0 -prove-skip 1 -falsify -show-inputs -show return_port -dump_json formal/reports/abs_transaction.json;

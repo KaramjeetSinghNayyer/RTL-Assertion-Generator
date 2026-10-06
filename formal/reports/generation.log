@@ -1,0 +1,5 @@
+abs: ready; 2 postconditions
+add: ready; 1 postconditions
+max: ready; 2 postconditions
+min: ready; 2 postconditions
+sign: pending_rtl_and_metadata; 1 postconditions

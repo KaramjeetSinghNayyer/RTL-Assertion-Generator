@@ -1,0 +1,5 @@
+read_verilog -formal -sv -D YOSYS add.v sva/add_acsl.sv formal/add_formal.sv;
+prep -top add_formal -flatten;
+chformal -lower;
+chformal -cover -remove;
+sat -seq 2 -tempinduct -maxsteps 8 -set-assumes -set-def-inputs -prove-asserts -verify;

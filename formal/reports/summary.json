@@ -1,0 +1,45 @@
+{
+  "generated_at_utc": "2026-10-06T12:08:35.817429+00:00",
+  "tools": {
+    "verilator": "Verilator 5.052 2026-09-05 rev vUNKNOWN-built20260905",
+    "yosys": "Yosys 0.69+post (git sha1 143eb14f9cc55d6f8927e68523b0c9d2166ed02c, Release, AppleClang clang++ 21.0.0.21000334)"
+  },
+  "results": {
+    "abs": {
+      "c_vectors_passed": 70,
+      "sva_simulation": "PASS",
+      "formal_induction": "PASS",
+      "valid_transaction_reachable": true,
+      "corrupt_output_detected": true,
+      "invalid_input_excluded": true
+    },
+    "add": {
+      "c_vectors_passed": 69,
+      "sva_simulation": "PASS",
+      "formal_induction": "PASS",
+      "valid_transaction_reachable": true,
+      "corrupt_output_detected": true,
+      "invalid_input_excluded": true
+    },
+    "max": {
+      "c_vectors_passed": 113,
+      "sva_simulation": "PASS",
+      "formal_induction": "PASS",
+      "valid_transaction_reachable": true,
+      "corrupt_output_detected": true
+    },
+    "min": {
+      "c_vectors_passed": 113,
+      "sva_simulation": "PASS",
+      "formal_induction": "PASS",
+      "valid_transaction_reachable": true,
+      "corrupt_output_detected": true
+    },
+    "sign": {
+      "c_vectors_passed": 71,
+      "sva_lint": "PASS",
+      "formal_induction": "PENDING: no sign.v or sign metadata"
+    }
+  },
+  "original_files_unchanged": true
+}
